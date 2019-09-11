@@ -14,4 +14,47 @@
         </outSequence>
         <faultSequence/>
     </resource>
+    <resource methods="POST" uri-template="/categories/{category}/reserve">
+        <inSequence>
+            <propertyGroup description="Hospital">
+                <property expression="json-eval($.hospital)" name="Hospital" scope="default" type="STRING"/>
+            </propertyGroup>
+            <switch source="get-property('Hospital')">
+                <case regex="grand oak community hospital">
+                    <log description="Grand Oak Log" level="custom">
+                        <property expression="fn:concat('Routing to ', get-property('Hospital'))" name="message"/>
+                    </log>
+                    <send>
+                        <endpoint key="GrandOakEP"/>
+                    </send>
+                </case>
+                <case regex="clemency medical center">
+                    <log description="Clemency Log" level="custom">
+                        <property expression="fn:concat('Routing to ', get-property('Hospital'))" name="message"/>
+                    </log>
+                    <send>
+                        <endpoint key="ClemencyEP"/>
+                    </send>
+                </case>
+                <case regex="pine valley community hospital">
+                    <log description="Pine Valley Log" level="custom">
+                        <property expression="fn:concat('Routing to ', get-property('Hospital'))" name="message"/>
+                    </log>
+                    <send>
+                        <endpoint key="PineValleyEP"/>
+                    </send>
+                </case>
+                <default>
+                    <log category="ERROR" description="fault log" level="custom">
+                        <property expression="fn:concat('Invalid hospital - ', get-property('Hospital'))" name="message"/>
+                    </log>
+                    <respond description="respond"/>
+                </default>
+            </switch>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
 </api>
