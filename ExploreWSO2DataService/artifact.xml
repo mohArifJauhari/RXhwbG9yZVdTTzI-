@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="DOCTORS_List" groupId="jhr.arif.explorewso2dataservice.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/DOCTORS_List.dbs</file>
+    </artifact>
+</artifacts>
