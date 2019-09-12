@@ -6,6 +6,12 @@
     <call>
         <endpoint key="SettlePaymentEP"/>
     </call>
+    <enrich>
+        <source clone="true" type="inline">
+            <cancellation_link xmlns="">https://localhost:9445/bpmn-explorer/</cancellation_link>
+        </source>
+        <target action="child" xpath="//jsonObject"/>
+    </enrich>
     <log level="full"/>
     <propertyGroup description="get response">
         <property expression="json-eval($)" name="payment_response" scope="default" type="STRING"/>
