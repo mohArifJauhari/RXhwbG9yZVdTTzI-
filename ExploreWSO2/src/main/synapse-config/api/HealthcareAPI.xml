@@ -16,9 +16,10 @@
     </resource>
     <resource methods="POST" uri-template="/categories/{category}/reserve">
         <inSequence>
-            <propertyGroup description="Hospital">
+            <propertyGroup description="get Hospital">
                 <property expression="json-eval($.hospital)" name="Hospital" scope="default" type="STRING"/>
             </propertyGroup>
+            <datamapper config="gov:datamapper/RequestMapping.dmc" description="data Mapper" inputSchema="gov:datamapper/RequestMapping_inputSchema.json" inputType="JSON" outputSchema="gov:datamapper/RequestMapping_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/RequestMapping_xsltStyleSheet.xml"/>
             <switch source="get-property('Hospital')">
                 <case regex="grand oak community hospital">
                     <log description="Grand Oak Log" level="custom">
