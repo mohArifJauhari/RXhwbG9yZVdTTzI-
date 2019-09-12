@@ -14,4 +14,10 @@
     <artifact name="PineValleyEP" groupId="jhr.arif.explorewso2.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/PineValleyEP.xml</file>
     </artifact>
+    <artifact name="ChannelingFeeEP" groupId="jhr.arif.explorewso2.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/ChannelingFeeEP.xml</file>
+    </artifact>
+    <artifact name="SettlePaymentEP" groupId="jhr.arif.explorewso2.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SettlePaymentEP.xml</file>
+    </artifact>
 </artifacts>
