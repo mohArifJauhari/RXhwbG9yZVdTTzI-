@@ -90,9 +90,11 @@
                     <arg evaluator="xml" expression="$ctx:card_number"/>
                 </args>
             </payloadFactory>
-            <call>
-                <endpoint key="SettlePaymentEP"/>
-            </call>
+            <store description="Payment Store" messageStore="PaymentRequestMessageStore"/>
+            <payloadFactory description="Construct response" media-type="json">
+                <format>{"message":" Payment request successfully submitted. Payment confirmation will be sent via email ."}</format>
+                <args/>
+            </payloadFactory>
             <respond/>
         </inSequence>
         <outSequence/>
