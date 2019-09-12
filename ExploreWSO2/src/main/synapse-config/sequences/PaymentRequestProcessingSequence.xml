@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="PaymentRequestProcessingSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup description="Email">
+        <property expression="json-eval($.patient.email)" name="email_id" scope="default" type="STRING"/>
+    </propertyGroup>
     <call>
         <endpoint key="SettlePaymentEP"/>
     </call>
     <log level="full"/>
+    <propertyGroup description="get response">
+        <property expression="json-eval($)" name="payment_response" scope="default" type="STRING"/>
+    </propertyGroup>
+    <gmail.init>
+        <userId>moh.arif.jauhari@gmail.com</userId>
+        <accessToken>ya29.GluBBxgEG9JWET8BFfcZDEh0Ykk_Dd0_I9x255b3Jy_xsVmnA36bLr1_Iz4IvcWh64FTKy9wvMN5gXvhgmixCqUrCbaRVKPwH_AOTjVrgEqSBFOriI6G8BQBiCLq</accessToken>
+        <apiUrl>https://www.googleapis.com/gmail</apiUrl>
+        <clientId>294269995301-8sh0injem2e6jgffq42nbiqp6jdbftkl.apps.googleusercontent.com</clientId>
+        <clientSecret>LWp41g96kqRIs4tn2z1C8P7v</clientSecret>
+        <refreshToken>1/i_vWbYHqEp6XNqk_4rEEgt6F-5SZ2dYEeog2b9ZZ7zQ</refreshToken>
+    </gmail.init>
+    <gmail.sendMail>
+        <to>{$ctx:email_id}</to>
+        <subject>Payment Status</subject>
+        <messageBody>{$ctx:payment_response}</messageBody>
+    </gmail.sendMail>
     <drop/>
 </sequence>

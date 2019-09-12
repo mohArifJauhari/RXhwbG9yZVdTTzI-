@@ -16,6 +16,7 @@
     <jhr.arif.explorewso2.resource_._RequestMapping_outputSchema>capp/EnterpriseServiceBus</jhr.arif.explorewso2.resource_._RequestMapping_outputSchema>
     <jhr.arif.explorewso2dataservice.dataservice_._DOCTORS_List>capp/DataServicesServer</jhr.arif.explorewso2dataservice.dataservice_._DOCTORS_List>
     <jhr.arif.explorewso2.resource_._RequestMapping>capp/EnterpriseServiceBus</jhr.arif.explorewso2.resource_._RequestMapping>
+    <jhr.arif.explorewso2.lib_._gmail-connector>capp/EnterpriseServiceBus</jhr.arif.explorewso2.lib_._gmail-connector>
     <jhr.arif.explorewso2.endpoint_._PineValleyEP>capp/EnterpriseServiceBus</jhr.arif.explorewso2.endpoint_._PineValleyEP>
     <jhr.arif.explorewso2.endpoint_._SettlePaymentEP>capp/EnterpriseServiceBus</jhr.arif.explorewso2.endpoint_._SettlePaymentEP>
     <jhr.arif.explorewso2.sequence_._PaymentRequestProcessingSequence>capp/EnterpriseServiceBus</jhr.arif.explorewso2.sequence_._PaymentRequestProcessingSequence>
@@ -116,6 +117,12 @@
       <artifactId>PaymentRequestProcessingSequence</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>jhr.arif.explorewso2.lib</groupId>
+      <artifactId>gmail-connector</artifactId>
+      <version>3.0.8</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>
