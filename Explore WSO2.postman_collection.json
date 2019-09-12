@@ -1,0 +1,442 @@
+{
+	"info": {
+		"_postman_id": "ebcb4090-2ad0-4c38-acb3-207aac938567",
+		"name": "Explore WSO2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "healthcare/querydoctor/surgery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.2.16.182:8280/healthcare/querydoctor/surgery",
+					"protocol": "http",
+					"host": [
+						"10",
+						"2",
+						"16",
+						"182"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"querydoctor",
+						"surgery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/querydoctor/cardiology",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.2.16.182:8280/healthcare/querydoctor/cardiology",
+					"protocol": "http",
+					"host": [
+						"10",
+						"2",
+						"16",
+						"182"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"querydoctor",
+						"cardiology"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/querydoctor/gynaecology",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.2.16.182:8280/healthcare/querydoctor/gynaecology",
+					"protocol": "http",
+					"host": [
+						"10",
+						"2",
+						"16",
+						"182"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"querydoctor",
+						"gynaecology"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/querydoctor/ent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.2.16.182:8280/healthcare/querydoctor/ent",
+					"protocol": "http",
+					"host": [
+						"10",
+						"2",
+						"16",
+						"182"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"querydoctor",
+						"ent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/querydoctor/paediatric",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.2.16.182:8280/healthcare/querydoctor/paediatric",
+					"protocol": "http",
+					"host": [
+						"10",
+						"2",
+						"16",
+						"182"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"querydoctor",
+						"paediatric"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getDoctors?SPECIALITY=surgery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getDoctors?SPECIALITY=surgery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getDoctors"
+					],
+					"query": [
+						{
+							"key": "SPECIALITY",
+							"value": "surgery"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getAllDoctors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getAllDoctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getAllDoctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getDoctors?SPECIALITY=cardiology",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getDoctors?SPECIALITY=cardiology",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getDoctors"
+					],
+					"query": [
+						{
+							"key": "SPECIALITY",
+							"value": "cardiology"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getDoctors?SPECIALITY=gynaecology",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getDoctors?SPECIALITY=gynaecology",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getDoctors"
+					],
+					"query": [
+						{
+							"key": "SPECIALITY",
+							"value": "gynaecology"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getDoctors?SPECIALITY=ent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getDoctors?SPECIALITY=ent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getDoctors"
+					],
+					"query": [
+						{
+							"key": "SPECIALITY",
+							"value": "ent"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services/DOCTORS_List/getDoctors?SPECIALITY=paediatric",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/services/DOCTORS_List/getDoctors?SPECIALITY=paediatric",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"services",
+						"DOCTORS_List",
+						"getDoctors"
+					],
+					"query": [
+						{
+							"key": "SPECIALITY",
+							"value": "paediatric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/categories/surgery/reserve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patient\": {\n        \"name\": \"John Doe\",\n        \"dob\": \"1940-03-19\",\n        \"ssn\": \"234-23-525\",\n        \"address\": \"California\",\n        \"phone\": \"8770586755\",\n        \"email\": \"johndoe@gmail.com\"\n    },\n    \"doctor\": \"thomas collins\",\n    \"hospital\": \"grand oak community hospital2\",\n    \"appointment_date\": \"2025-04-02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcare/categories/surgery/reserve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"dob\": \"1990-03-19\",\n    \"ssn\": \"234-23-525\",\n    \"address\": \"California\",\n    \"phone\": \"8770586755\",\n    \"email\": \"johndoe@gmail.com\",\n    \"doctor\": \"thomas collins\",\n    \"hospital\": \"grand oak community hospital\",\n    \"cardNo\": \"7844481124110331\",\n    \"appointment_date\": \"2025-04-02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8280/healthcare/categories/surgery/reserve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"dob\": \"1940-03-19\",\n    \"ssn\": \"234-23-525\",\n    \"address\": \"California\",\n    \"phone\": \"8770586755\",\n    \"email\": \"johndoe@gmail.com\",\n    \"doctor\": \"thomas collins\",\n    \"hospital\": \"grand oak community hospital\",\n    \"cardNo\": \"7844481124110331\",\n    \"appointment_date\": \"2025-04-02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8280/healthcare/categories/surgery/reserve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"dob\": \"1940-03-19\",\n    \"ssn\": \"234-23-525\",\n    \"address\": \"California\",\n    \"phone\": \"8770586755\",\n    \"email\": \"johndoe@gmail.com\",\n    \"doctor\": \"thomas collins\",\n    \"hospital\": \"grand oak community hospital\",\n    \"cardNo\": \"7844481124110331\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8280/healthcare/categories/surgery/reserve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"dob\": \"1940-03-19\",\n    \"ssn\": \"234-23-525\",\n    \"address\": \"California\",\n    \"phone\": \"8770586755\",\n    \"email\": \"arifjauhari@swamedia.co.id\",\n    \"doctor\": \"thomas collins\",\n    \"hospital\": \"grand oak community hospital\",\n    \"cardNo\": \"7844481124110331\",\n    \"appointment_date\": \"2025-04-02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8280/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
