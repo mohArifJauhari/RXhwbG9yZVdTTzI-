@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace=" http://wso2.org/bpmn/orderApproval">
+  <process id="orderApproval" name="Order Approval Process" isExecutable="true">
+    <startEvent id="fillOrderDetails" name="Enter Order Details">
+      <extensionElements>
+        <activiti:formProperty id="productID" name="Product Id" type="string" variable="productID"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="fillOrderForm" name="Fill Order Form" activiti:candidateGroups="admin">
+      <extensionElements>
+        <activiti:formProperty id="productID" name="Product ID" type="string" variable="productID"></activiti:formProperty>
+        <activiti:formProperty id="quantity" name="Quantity" type="long" variable="quantity"></activiti:formProperty>
+        <activiti:formProperty id="unitPrice" name="Unit Price" type="double" variable="unitPrice"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="approveOrderForm" name="Approve Order" activiti:candidateGroups="admin">
+      <extensionElements>
+        <activiti:formProperty id="productID" name="Product ID" type="string" variable="productID" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="quantity" name="Quantity" type="long" variable="quantity" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="unitPrice" name="Unit Price" type="double" variable="unitPrice" writable="false" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="orderProductMailTask" name="Order Product" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[arifjauhari@swamedia.co.id]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[moh.arif.jauhari@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Order Product Notification]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Order ${quantity} of ${productID} at the rate of ${unitPrice}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow1" sourceRef="fillOrderDetails" targetRef="fillOrderForm"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="orderProductFlow"></exclusiveGateway>
+    <sequenceFlow id="flow2" sourceRef="fillOrderForm" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="approveOrderFlow" sourceRef="exclusivegateway1" targetRef="approveOrderForm">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${(quantity*unitPrice) > 100000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="orderProductFlow" sourceRef="exclusivegateway1" targetRef="orderProductMailTask"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="orderProductMailTask" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="approveOrderForm" targetRef="orderProductMailTask"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_orderApproval">
+    <bpmndi:BPMNPlane bpmnElement="orderApproval" id="BPMNPlane_orderApproval">
+      <bpmndi:BPMNShape bpmnElement="fillOrderDetails" id="BPMNShape_fillOrderDetails">
+        <omgdc:Bounds height="35.0" width="35.0" x="100.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="580.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="fillOrderForm" id="BPMNShape_fillOrderForm">
+        <omgdc:Bounds height="55.0" width="105.0" x="190.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approveOrderForm" id="BPMNShape_approveOrderForm">
+        <omgdc:Bounds height="55.0" width="105.0" x="400.0" y="10.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="orderProductMailTask" id="BPMNShape_orderProductMailTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="400.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="330.0" y="97.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="135.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="295.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="330.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="approveOrderFlow" id="BPMNEdge_approveOrderFlow">
+        <omgdi:waypoint x="350.0" y="97.0"></omgdi:waypoint>
+        <omgdi:waypoint x="350.0" y="37.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="37.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="orderProductFlow" id="BPMNEdge_orderProductFlow">
+        <omgdi:waypoint x="370.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="505.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="452.0" y="65.0"></omgdi:waypoint>
+        <omgdi:waypoint x="452.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
