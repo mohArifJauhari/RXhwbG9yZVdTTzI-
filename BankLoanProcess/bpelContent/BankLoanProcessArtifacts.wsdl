@@ -5,7 +5,7 @@
         xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
         xmlns="http://schemas.xmlsoap.org/wsdl/"
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-        >
+        xmlns:xsd="http://wso2.org/bps/samples/loan_process/schema">
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      TYPE DEFINITION - List of types participating in this BPEL process 
@@ -34,7 +34,11 @@
                 </complexType>
             </element>
         </schema>
-    </types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        	<xsd:import
+        		namespace="http://wso2.org/bps/samples/loan_process/schema"
+        		schemaLocation="loan.xsd">
+        	</xsd:import></xsd:schema></types>
 
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,10 +46,10 @@
      part of the port type defintions
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
     <message name="BankLoanProcessRequestMessage">
-        <part name="payload" element="tns:BankLoanProcessRequest"/>
+        <part name="payload" element="xsd:LoanRequest" />
     </message>
     <message name="BankLoanProcessResponseMessage">
-        <part name="payload" element="tns:BankLoanProcessResponse"/>
+        <part name="payload" element="xsd:LoanOffer" />
     </message>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,7 +91,7 @@
     	</operation>
     </binding>
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      SERVICE DEFINITION - A service groups a set of ports into
      a service unit.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

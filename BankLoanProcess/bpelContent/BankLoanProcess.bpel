@@ -5,10 +5,12 @@
          suppressJoinFailure="yes"
          xmlns:tns="http://wso2.org/bps/sample"
          xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
-         >
+         xmlns:ns1="http://wso2.org/bps/samples/CustomerInfo" xmlns:xsd="http://wso2.org/bps/samples/loan_process/schema" xmlns:ns2="http://wso2.org/bps/samples/CreditRating">
 
     <!-- Import the client WSDL -->
-	<bpel:import location="BankLoanProcessArtifacts.wsdl" namespace="http://wso2.org/bps/sample" 
+    <bpel:import namespace="http://wso2.org/bps/samples/CreditRating" location="CreditRating.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+    <bpel:import namespace="http://wso2.org/bps/samples/CustomerInfo" location="CustomerInfo.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+    <bpel:import location="BankLoanProcessArtifacts.wsdl" namespace="http://wso2.org/bps/sample" 
 	        importType="http://schemas.xmlsoap.org/wsdl/" />
          
     <!-- ================================================================= -->         
@@ -21,6 +23,8 @@
                      partnerLinkType="tns:BankLoanProcess"
                      myRole="BankLoanProcessProvider"
                      />
+        <bpel:partnerLink name="CustomerPL" partnerLinkType="ns1:CustomerInfo" partnerRole="CustomerInfoPortTypeRole"></bpel:partnerLink>
+        <bpel:partnerLink name="CreditPL" partnerLinkType="ns2:CreditRating" partnerRole="CreditRatingService"></bpel:partnerLink>
     </bpel:partnerLinks>
   
     <!-- ================================================================= -->         
@@ -37,6 +41,10 @@
           -->
         <bpel:variable name="output"
                   messageType="tns:BankLoanProcessResponseMessage"/>
+        <bpel:variable name="CustomerPLResponse" messageType="ns1:getCustomerSSNResponse"></bpel:variable>
+        <bpel:variable name="CustomerPLRequest" messageType="ns1:getCustomerSSNRequest"></bpel:variable>
+        <bpel:variable name="CreditPLResponse" messageType="ns2:getCreditRatingResponse"></bpel:variable>
+        <bpel:variable name="CreditPLRequest" messageType="ns2:getCreditRatingRequest"></bpel:variable>
     </bpel:variables>
 
     <!-- ================================================================= -->         
@@ -50,10 +58,89 @@
              Note: This maps to operation defined in BankLoanProcess.wsdl 
              -->
         <bpel:receive name="receiveInput" partnerLink="client"
-                 portType="tns:BankLoanProcess"
-                 operation="process" variable="input"
-                 createInstance="yes"/>
-        <bpel:empty name="FIX_ME-Add_Business_Logic_Here"></bpel:empty>
+                 createInstance="yes" operation="process" portType="tns:BankLoanProcess" variable="input"/>
+        <bpel:assign validate="no" name="Assign">
+            <bpel:copy>
+                <bpel:from><bpel:literal><tns:CustomerInfo xmlns:tns="http://wso2.org/bps/samples/loan_process/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <tns:Name>tns:Name</tns:Name>
+  <tns:Email>tns:Email</tns:Email>
+  <tns:CustomerID>tns:CustomerID</tns:CustomerID>
+  <tns:CreditRating>0</tns:CreditRating>
+</tns:CustomerInfo>
+</bpel:literal></bpel:from>
+                <bpel:to variable="CustomerPLRequest" part="part"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="input">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:CustomerInfo]]></bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CustomerPLRequest"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="input">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
+                        <![CDATA[xsd:CustomerInfo/xsd:Name]]>
+                    </bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CustomerPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
+                        <![CDATA[xsd:Name]]>
+                    </bpel:query>
+                </bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="input">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
+                        <![CDATA[xsd:CustomerInfo/xsd:Email]]>
+                    </bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CustomerPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
+                        <![CDATA[xsd:Email]]>
+                    </bpel:query>
+                </bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="input">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:CustomerInfo/xsd:CustomerID]]></bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CustomerPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:CustomerID]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="input">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:CustomerInfo/xsd:CreditRating]]></bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CustomerPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:CreditRating]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+        </bpel:assign>
+        <bpel:invoke name="InvokingCustomerInfo" partnerLink="CustomerPL" operation="getCustomerSSN" portType="ns1:CustomerInfoPortType" inputVariable="CustomerPLRequest" outputVariable="CustomerPLResponse"></bpel:invoke>
+        <bpel:assign validate="no" name="Assign1">
+            <bpel:copy>
+                <bpel:from><bpel:literal><tns:CustomerSSN xmlns:tns="http://wso2.org/bps/samples/loan_process/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <tns:SSN>tns:SSN</tns:SSN>
+</tns:CustomerSSN>
+</bpel:literal></bpel:from>
+                <bpel:to variable="CreditPLRequest" part="part"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="part" variable="CustomerPLResponse"></bpel:from>
+                <bpel:to part="part" variable="CreditPLRequest"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="part" variable="CustomerPLResponse">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:SSN]]></bpel:query>
+                </bpel:from>
+                <bpel:to part="part" variable="CreditPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[xsd:SSN]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+        </bpel:assign>
+        <bpel:invoke name="InvokeCreditRating" partnerLink="CreditPL" operation="getCreditRating" portType="ns2:CreditRatingPortType" inputVariable="CreditPLRequest" outputVariable="CreditPLResponse"></bpel:invoke>
+        
         <!-- Generate reply to synchronous request -->
         <bpel:reply name="replyOutput" 
                partnerLink="client"
