@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:sample="http://wso2.org/bps/sample">
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:CreditRating="http://wso2.org/bps/samples/CreditRating" xmlns:CustomerInfo="http://wso2.org/bps/samples/CustomerInfo" xmlns:LoanService="http://wso2.org/bps/samples/LoanService" xmlns:sample="http://wso2.org/bps/sample">
   <process name="sample:BankLoanProcess">
     <active>true</active>
     <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="sample:BankLoanProcess" port="BankLoanProcessPort"/>
+    </provide>
+    <provide partnerLink="LoanPL">
+      <service name="LoanService:LoanServiceCallback" port="LoanServiceCallbackPort"/>
+    </provide>
+    <invoke partnerLink="CustomerPL">
+      <service name="CustomerInfo:CustomerInfoService" port="CustomerInfoPort"/>
+    </invoke>
+    <invoke partnerLink="CreditPL">
+      <service name="CreditRating:CreditRatingService" port="CreditRatingPort"/>
+    </invoke>
+    <invoke partnerLink="LoanPL">
+      <service name="LoanService:XKLoanService" port="LoanServicePort"/>
+    </invoke>
   </process>
 </deploy>

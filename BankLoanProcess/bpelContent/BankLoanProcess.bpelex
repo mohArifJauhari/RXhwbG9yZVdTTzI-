@@ -22,7 +22,7 @@
   </extensions>
   <extensions>
     <extendedObject href="BankLoanProcess.bpel#/"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1571128884362"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1571129428643"/>
   </extensions>
   <extensions>
     <extendedObject href="BankLoanProcess.bpel#//@activity/@activities.2"/>
